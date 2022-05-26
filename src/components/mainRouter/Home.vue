@@ -42,7 +42,6 @@ import appSlider from '../Card/Slider.vue';
 import Preloader from '../Preloader.vue';
 import SliderTop from '../Card/popular/SliderTop.vue';
 import appFooter from '../Footer.vue';
-import axios from 'axios';
 
 export default {
   components: {
@@ -79,7 +78,7 @@ export default {
     }
   },
   created() {
-    axios.get('/data.json').then(response => {
+    fetch('/data.json').then(response => {
       const data = response.data;
       for (let key in data) {
         this.$store.commit('setFirebaseData', data[key]);
@@ -91,7 +90,6 @@ export default {
       this.$router.push('/browse');
     }
   }
-
 };
 </script>
 

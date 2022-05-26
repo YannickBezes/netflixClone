@@ -13,7 +13,6 @@
 import headerLogged from './components/header-logged-in.vue';
 import appPopup from './components/Popup.vue';
 import appFooter from './components/Footer.vue';
-import axios from 'axios';
 import { DEFAULT_LAYOUT } from './layouts';
 
 export default {
@@ -26,7 +25,7 @@ export default {
     }
   },
   created() {
-    axios.get('/data.json').then(response => {
+    fetch('/data.json').then(response => {
       const data = response.data;
       for (let key in data) {
         this.$store.commit('setFirebaseData', data[key]);
@@ -40,13 +39,13 @@ export default {
       this.$store.state.userEmail = localStorage.getItem('userEmail');
       this.$store.state.userLocalID = localStorage.getItem('localId');
 
-      axios.get('/userData/' + this.$store.state.userLocalID + '/list.json').then(response => {
+      fetch('/userData/' + this.$store.state.userLocalID + '/list.json').then(response => {
         this.$store.state.addedToList = response.data;
       });
-      axios.get('/userData/' + this.$store.state.userLocalID + '/like.json').then(response => {
+      fetch('/userData/' + this.$store.state.userLocalID + '/like.json').then(response => {
         this.$store.state.likedContents = response.data;
       });
-      axios.get('/userData/' + this.$store.state.userLocalID + '/dislike.json').then(response => {
+      fetch('/userData/' + this.$store.state.userLocalID + '/dislike.json').then(response => {
         this.$store.state.unlikedContents = response.data;
       });
 
@@ -70,17 +69,26 @@ export default {
       }
     },
     '$store.state.addedToList'(data) {
-      axios.put('/userData/' + this.$store.state.userLocalID + '/list.json', data).then(response => {
+      fetch('/userData/' + this.$store.state.userLocalID + '/list.json', {
+        method: 'PUT',
+        body: data
+      }).then(response => {
         console.log(response);
       });
     },
     '$store.state.likedContents'(data) {
-      axios.put('/userData/' + this.$store.state.userLocalID + '/like.json', data).then(response => {
+      fetch('/userData/' + this.$store.state.userLocalID + '/like.json', {
+        method: 'PUT',
+        body: data
+      }).then(response => {
         console.log(response);
       });
     },
     '$store.state.unlikedContents'(data) {
-      axios.put('/userData/' + this.$store.state.userLocalID + '/dislike.json', data).then(response => {
+      fetch('/userData/' + this.$store.state.userLocalID + '/dislike.json', {
+        method: 'PUT',
+        body:data
+      }).then(response => {
         console.log(response);
       });
     }

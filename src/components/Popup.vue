@@ -18,20 +18,20 @@
                         <router-link :to="{ path: '/watch' , query : {id: activeData.id} }" tag="div">
                           <div
                             class="iconDiv-play"
-                            @click="playButton">
+                            @click="play">
                             <i class="fas fa-play"></i><label>Play</label>
                           </div>
                         </router-link>
                         <div class="iconDiv" @click="addToList"><i
                           :class="isAddedToList ? 'fas fa-check' : 'fas fa-plus'"></i></div>
-                        <div class="iconDiv" @click="likeButton"><i
+                        <div class="iconDiv" @click="like"><i
                           :class="isLiked  ? 'fas fa-thumbs-up' : 'far fa-thumbs-up' "></i></div>
-                        <div class="iconDiv" @click="dislikeButton"><i
+                        <div class="iconDiv" @click="dislike"><i
                           :class="isDisliked  ? 'fas fa-thumbs-down' : 'far fa-thumbs-down'"></i></div>
                       </div>
                     </div>
                     <div class="video-top-info-bottom-right">
-                      <div class="iconDiv" @click="soundControl"><i
+                      <div class="iconDiv" @click="mute"><i
                         :class="isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up'"></i></div>
                     </div>
                   </div>
@@ -168,7 +168,7 @@
                                  :to="{path : '/genre' , query : { p : item}}">{{ item }}
                     </router-link>
                     <label v-if="index < categoryLength">, </label> </label></p>
-                  <p class="other-info">Pegi: <label> {{ activeData.age }} suitable for ages and up</label></p>
+                  <p class="other-info">Age category: <label> {{ activeData.age }} suitable for ages and up</label></p>
                 </div>
               </div>
             </div>
@@ -227,7 +227,7 @@ export default {
   },
   directives: { clickOutside },
   methods: {
-    soundControl() {
+    mute() {
       this.$store.state.cardSound = !this.$store.state.cardSound;
     },
     closePopup() {
@@ -251,7 +251,7 @@ export default {
         this.$store.state.addedToList.push(this.item.id);
       }
     },
-    likeButton() {
+    like() {
       if (this.isDisliked === true) {
         const unlikedContents = this.$store.state.unlikedContents;
         for (let i = 0; i < unlikedContents.length; i++) {
@@ -273,7 +273,7 @@ export default {
         this.$store.state.likedContents.push(this.item.id);
       }
     },
-    dislikeButton() {
+    dislike() {
       if (this.isLiked === true) {
         const likedContents = this.$store.state.likedContents;
         for (let i = 0; i < likedContents.length; i++) {
@@ -295,7 +295,7 @@ export default {
         this.$store.state.unlikedContents.push(this.item.id);
       }
     },
-    playButton() {
+    play() {
       this.$store.state.popup = false;
       document.querySelector('#videoPopup').pause();
     },
