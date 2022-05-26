@@ -56,7 +56,7 @@ export default {
         item.cast[0].toLowerCase().match(value.toLowerCase()) ||
         item.category[0].toLowerCase().match(value.toLowerCase()) ||
         item.category.includes(value.toLowerCase()) ||
-        item.altcategoryler.includes(value.toLowerCase()) ||
+        item.subcategories.includes(value.toLowerCase()) ||
         item.cast.includes(value.toLowerCase()) ||
         item.scriptwriter.includes(value.toLowerCase()) ||
         item.director.includes(value.toLowerCase())

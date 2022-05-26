@@ -1,15 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VueResource from 'vue-resource';
-import axios from 'axios';
-
 
 Vue.use(Vuex, VueResource);
 
 export const store = new Vuex.Store({
   state: {
     cardSound: true,
-    firebaseData: [],
+    data: [],
     bigVideoPlayerControl: true,
     currentTime: 0,
     activePopupContent: {},
@@ -30,22 +28,22 @@ export const store = new Vuex.Store({
 
   },
   getters: {
-    getFirebaseData(state) {
-      return state.firebaseData;
+    getData(state) {
+      return state.data;
     },
-    getFirebaseDataLength(state) {
-      return state.firebaseData.length;
+    getDataLength(state) {
+      return state.data.length;
     },
     getBigVideoPlayerControl(state) {
       return state.bigVideoPlayerControl;
     },
-    getTokenIdLength(state) {
+    getTokenLength(state) {
       return state.token.length;
     }
   },
   mutations: {
-    setFirebaseData(state, value) {
-      state.firebaseData.push(value);
+    setData(state, value) {
+      state.data.push(value);
     },
     setBigVideoPlayerControl(state, value) {
       state.bigVideoPlayerControl = value;

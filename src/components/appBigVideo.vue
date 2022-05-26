@@ -28,7 +28,7 @@
       <div class="main-container-right">
         <div class="muted">
           <div class="iconDiv" @click="mute">
-            <i :class="mutedControl ? mutedClass : mutedClassActive"></i>
+            <i :class="mutedControl ? 'fas fa-volume-mute' : 'fas fa-volume-up'"></i>
           </div>
         </div>
         <div class="fixedAge">
@@ -62,7 +62,7 @@
       <div class="main-container-right">
         <div class="muted">
           <div class="iconDiv" @click="mute">
-            <i :class="mutedControl ? mutedClass : mutedClassActive"></i>
+            <i :class="mutedControl ? 'fas fa-volume-mute' : 'fas fa-volume-up'"></i>
           </div>
         </div>
         <div class="fixedAge">

@@ -7,10 +7,10 @@
 
 <script>
 import headerLoggedIn from '../components/header-logged-in';
+
 export default {
   name: 'logged-in',
   components: { headerLoggedIn }
-
 };
 </script>
 

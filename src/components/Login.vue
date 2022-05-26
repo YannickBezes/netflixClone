@@ -35,7 +35,6 @@ import Helper from '../services/helper';
 
 export default {
   components: { headerLoggedOut },
-
   data() {
     return {
       user: {

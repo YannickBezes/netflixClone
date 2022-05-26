@@ -18,7 +18,7 @@ import PlayerJS from '../../assets/js/playerjs';
 export default {
   data() {
     return {
-      database: this.$store.getters['getFirebaseData'],
+      database: this.$store.getters['getData'],
       queryId: this.$route.query.id,
       activeDataPlayer: {}
     };

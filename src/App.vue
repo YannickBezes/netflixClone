@@ -20,11 +20,6 @@ export default {
   components: {
     headerLogged, appPopup, appFooter
   },
-  data() {
-    return {
-      mainControl: true
-    };
-  },
   computed: {
     layout() {
       return this.$route.meta.layout || DEFAULT_LAYOUT;
@@ -74,9 +69,6 @@ export default {
         document.title = 'Netflix';
       }
     },
-    '$store.state.popup'() {
-      this.mainControl = this.$store.state.popup;
-    },
     '$store.state.addedToList'(data) {
       axios.put('/userData/' + this.$store.state.userLocalID + '/list.json', data).then(response => {
         console.log(response);
@@ -113,27 +105,5 @@ body {
   position: fixed;
   width: 100%;
   z-index: 5;
-}
-
-.activeHeader {
-  display: none;
-}
-
-.fade-enter {
-  opacity: 0;
-}
-
-.fade-enter-active {
-
-  transition: opacity 0.5s;;
-}
-
-.fade-leave {
-
-}
-
-.fade-leave-active {
-  opacity: 0;
-  transition: opacity 0.5s;
 }
 </style>

@@ -28,7 +28,7 @@
                 <div class="logo-soundControl-button">
                   <div class="buttons-sound" @click="VolumeControl">
                     <i
-                      :class="mutedControl ? mutedClass : mutedClassActive"
+                      :class="mutedControl ? 'fas fa-volume-mute' : 'fas fa-volume-up'"
                     ></i>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default {
       marginValue: 0,
       placeholderVideo: false,
       infoTransition: false,
-      subCategoriesLength: Object.keys(this.item.altcategoryler).length - 1,
+      subCategoriesLength: Object.keys(this.item.subcategories).length - 1,
       newAndDateControl: false,
       mouseLeaveControlCounter: 0,
       isAddedToList: null,

@@ -34,7 +34,7 @@ export default new Router({
       meta: { layout: LAYOUTS.LOGGED_IN },
       component: Home,
       beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');
@@ -43,7 +43,7 @@ export default new Router({
     },
     {
       path: '/browse/series', component: Series, name: 'series', beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');
@@ -52,7 +52,7 @@ export default new Router({
     },
     {
       path: '/browse/list', component: MyList, beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');
@@ -61,7 +61,7 @@ export default new Router({
     },
     {
       path: '/browse/movies', component: Movies, beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');
@@ -70,7 +70,7 @@ export default new Router({
     },
     {
       path: '/browse/new-popular', component: NewPopular, beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');
@@ -79,7 +79,7 @@ export default new Router({
     },
     {
       path: '/popup', component: Popup, beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');
@@ -88,7 +88,7 @@ export default new Router({
     },
     {
       path: '/watch', component: Player, beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');
@@ -97,7 +97,7 @@ export default new Router({
     },
     {
       path: '/search', component: Search, name: 'search', beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');
@@ -106,7 +106,7 @@ export default new Router({
     },
     {
       path: '/genre', component: Genre, beforeEnter(to, from, next) {
-        if (store.getters['getTokenIdLength'] > 10) {
+        if (store.getters['getTokenLength'] > 10) {
           next();
         } else {
           next('/login');

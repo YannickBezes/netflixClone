@@ -77,9 +77,9 @@ export default {
           let filteredData = this.database.filter((item) => item.type === type);
           filteredData = filteredData.filter(function (value) {
             for (let i = 0; i < 3; i++) {
-              if (value.altcategoryler[i] === value) {
+              if (value.subcategories[i] === value) {
 
-                return value.altcategoryler[i];
+                return value.subcategories[i];
               }
             }
           });

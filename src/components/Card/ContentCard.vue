@@ -30,7 +30,7 @@
                 <div class="logo-soundControl-button">
                   <div class="buttons-sound" @click="VolumeControl">
                     <i
-                      :class="mutedControl ? mutedClass : mutedClassActive"
+                      :class="isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up'"
                     ></i>
                   </div>
                 </div>
@@ -144,9 +144,7 @@ export default {
   props: [ 'item', 'lengthNumber', 'title' ],
   data() {
     return {
-      mutedClass: 'fas fa-volume-mute',
-      mutedClassActive: 'fas fa-volume-up',
-      mutedControl: null,
+      isMuted: null,
       mouseControl: false,
       cardHoverControl: false,
       cardDefaultControl: true,
@@ -161,7 +159,7 @@ export default {
       marginValue: 0,
       placeholderVideo: false,
       infoTransition: false,
-      subCategoriesLength: Object.keys(this.item.altcategoryler).length - 1,
+      subCategoriesLength: Object.keys(this.item.subcategories).length - 1,
       newAndDateControl: false,
       mouseLeaveControlCounter: 0,
       isAddedToList: null,
@@ -170,7 +168,7 @@ export default {
     };
   },
   created() {
-    this.mutedControl = this.$store.state.cardSound;
+    this.isMuted = this.$store.state.cardSound;
 
     this.isAddedToList = this.$store.state.addedToList.filter(item => item === this.item.id).length > 0;
 
@@ -266,12 +264,12 @@ export default {
     },
     addToList() {
       this.isAddedToList = !this.isAddedToList;
-      const data = this.$store.state.addedToList;
+      const addedToList = this.$store.state.addedToList;
 
       if (this.isAddedToList === false) {
-        for (let i = 0; i < data.length; i++) {
-          if (data[i] === this.item.id) {
-            data.splice(i, 1);
+        for (let i = 0; i < addedToList.length; i++) {
+          if (addedToList[i] === this.item.id) {
+            addedToList.splice(i, 1);
           }
         }
       } else {
@@ -325,7 +323,7 @@ export default {
   },
   watch: {
     '$store.state.cardSound'(isMuted) {
-      this.mutedControl = isMuted;
+      this.isMuted = isMuted;
     },
     '$store.state.likedContents'() {
       this.isLiked = this.$store.state.likedContents.filter(item => item === this.item.id).length > 0;
