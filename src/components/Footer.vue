@@ -29,8 +29,6 @@
           <label>Terms of Use</label>
           <label>Corporate Information</label>
         </div>
-
-
       </div>
       <div class="service-code"><p>Service Code</p></div>
       <div class="footer">© 2022 Netflix Clone - Vue Js</div>
@@ -60,8 +58,6 @@
           <label>Legal Provisions</label>
           <label>Corporate Information</label>
         </div>
-
-
       </div>
       <div class="service-code"><p>Service Code</p></div>
       <div class="footer">© 2022 Netflix Clone - Vue Js</div>
@@ -70,8 +66,6 @@
 </template>
 
 <style scoped>
-
-
 .mainFooter {
   width: 100%;
   height: 400px;
@@ -163,7 +157,6 @@
   align-items: flex-start;
   width: 100%;
   height: 46%;
-
 }
 
 .icons {

@@ -41,64 +41,72 @@
       </div>
     </div>
 
-    <!--    <div class="items2">-->
-    <!--      <div class="popupMenu" v-if="browseShow" @mouseleave="browseMenu('menuleave')" :style="popupMenu">-->
-    <!--        <div class="icon"><i style="color:white" class="fas fa-sort-up"></i></div>-->
-    <!--        <div class="item">-->
-    <!--          <router-link tag="p" active-class="navActiveR" to="/browse" exact>Home</router-link>-->
-    <!--        </div>-->
-    <!--        <div class="item">-->
-    <!--          <router-link tag="p" active-class="navActiveR" to="/browse/series" exact>TV Shows</router-link>-->
-    <!--        </div>-->
-    <!--        <div class="item">-->
-    <!--          <router-link tag="p" active-class="navActiveR" to="/browse/movies" exact>Movies</router-link>-->
-    <!--        </div>-->
-    <!--        <div class="item">-->
-    <!--          <router-link tag="p" active-class="navActiveR" to="/browse/new-popular" exact>New & Popular</router-link>-->
-    <!--        </div>-->
-    <!--        <div class="item">-->
-    <!--          <router-link tag="p" active-class="navActiveR" to="/browse/list" exact>My List</router-link>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div class="left">-->
-    <!--        <div class="logo"><img src="../assets/img/netflixLogo.png" alt="" srcset=""></div>-->
-    <!--        <div @click="browseClick" style="display:flex; justify-content:flex-start; color:white; "-->
-    <!--             @mouseover="gozatMenu('over')" class="responsive-menu">-->
-    <!--          <a style="margin-left:10px">Göz at</a><i style="font-size:12px; margin-left:-9px"-->
-    <!--                                                   class="fas fa-sort-down"></i>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div class="right">-->
-    <!--        <div class="searchMobile">-->
-    <!--          <i @click="searchClick = !searchClick" class="fas fa-search"></i>-->
-    <!--          <div v-if="searchClick ? true : false" id="search-m" style="transition:0.3s"-->
-    <!--               :class="searchClick ? 'searchActive' : 'search' ">-->
-    <!--            <i @click="searchClick = !searchClick" class="fas fa-search"></i>-->
-    <!--            <input id="searchInput" ref="searchInput" v-model="searchValue" type="text"-->
-    <!--                   placeholder="İçerik , kişi , tür">-->
-    <!--          </div>-->
-    <!--        </div>-->
+        <div class="items2">
+          <div class="popupMenu" v-if="browseShow" @mouseleave="browseMenu('menuleave')" :style="popupMenu">
+            <div class="icon"><i style="color:white" class="fas fa-sort-up"></i></div>
+            <div class="item">
+              <router-link tag="p" active-class="navActiveR" to="/browse" exact>Home</router-link>
+            </div>
+            <div class="item">
+              <router-link tag="p" active-class="navActiveR" to="/browse/series" exact>TV Shows</router-link>
+            </div>
+            <div class="item">
+              <router-link tag="p" active-class="navActiveR" to="/browse/movies" exact>Movies</router-link>
+            </div>
+            <div class="item">
+              <router-link tag="p" active-class="navActiveR" to="/browse/new-popular" exact>New & Popular</router-link>
+            </div>
+            <div class="item">
+              <router-link tag="p" active-class="navActiveR" to="/browse/list" exact>My List</router-link>
+            </div>
+          </div>
+          <div class="left">
+            <div class="logo"><img src="../assets/img/netflixLogo.png" alt="" srcset=""></div>
+            <div @click="browseClick" style="display:flex; justify-content:flex-start; color:white; "
+                 @mouseover="browseMenu('over')" class="responsive-menu">
+              <a style="margin-left:10px">Browse</a><i style="font-size:12px; margin-left:-9px" class="fas fa-sort-down"></i>
+            </div>
+          </div>
+          <div class="right">
+            <div class="searchMobile">
+              <i @click="searchClick = !searchClick" class="fas fa-search"></i>
+              <div
+                v-if="searchClick"
+                id="search-m"
+                style="transition:0.3s"
+                :class="searchClick ? 'searchActive' : 'search' "
+              >
+                <i @click="searchClick = !searchClick" class="fas fa-search"></i>
+                <input id="searchInput" ref="searchInput" v-model="searchValue" type="text" placeholder="Content , person , genre">
+              </div>
+            </div>
 
-    <!--        <div id="search" :class="searchClick ? 'searchActive' : 'search' ">-->
-    <!--          <i @click="searchClick = !searchClick" class="fas fa-search"></i>-->
-    <!--          <input id="searchInput" ref="searchInput" autocomplete="off" v-if="searchClick ? true : false"-->
-    <!--                 v-model="searchValue" type="text" placeholder="İçerik , kişi , tür">-->
-    <!--        </div>-->
-    <!--        <i id="bildirimicon" style="font-size:20px;" class="fas fa-bell"></i>-->
-    <!--        <div class="profile">-->
-    <!--          <div class="profile-box" @click="profileHover = !profileHover">-->
-    <!--            <img src="https://i.ibb.co/P4Gtz8S/0ddccae723d85a703b798a5e682c23c1.png" alt="">-->
-    <!--            <i style="font-size:13px ; margin-left:5px" class="fas fa-caret-down"></i>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--        <div id="mobilsettings" v-if="profileHover" class="profile-settings-frame-m">-->
-    <!--          <div class="profile-settings-m">-->
-    <!--            <div class="email"><p>{{ $store.state.userEmail }}</p></div>-->
-    <!--            <p @click="logout">Netflix Oturumunu Kapat</p>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+            <div id="search" :class="searchClick ? 'searchActive' : 'search' ">
+              <i @click="searchClick = !searchClick" class="fas fa-search"></i>
+              <input
+                id="searchInput"
+                ref="searchInput"
+                autocomplete="off"
+                v-if="searchClick"
+                v-model="searchValue"
+                type="text"
+                placeholder="Content , person , genre">
+            </div>
+            <i id="notification-icon" style="font-size:20px;" class="fas fa-bell"></i>
+            <div class="profile">
+              <div class="profile-box" @click="profileHover = !profileHover">
+                <img src="https://i.ibb.co/P4Gtz8S/0ddccae723d85a703b798a5e682c23c1.png" alt="">
+                <i style="font-size:13px ; margin-left:5px" class="fas fa-caret-down"></i>
+              </div>
+            </div>
+            <div id="mobilsettings" v-if="profileHover" class="profile-settings-frame-m">
+              <div class="profile-settings-m">
+                <div class="email"><p>{{ $store.state.userEmail }}</p></div>
+                <p @click="logout">Sign Out of Netflix</p>
+              </div>
+            </div>
+          </div>
+        </div>
   </div>
 </template>
 
@@ -184,7 +192,7 @@ export default {
   position: absolute;
   margin-top: 70px;
   margin-right: 7px;
-  padding: 0px;
+  padding: 0;
 }
 
 .profile-settings-m {
@@ -196,7 +204,6 @@ export default {
   border: 1px solid #262727;
 }
 
-
 .profile-settings-frame {
   position: absolute;
   margin-top: 10px;
@@ -207,20 +214,19 @@ export default {
   width: 100%;
   text-align: center;
   font-size: 10px;
-  font-family: FreeSans;
+  font-family: FreeSans,sans-serif;
 }
 
 .profile-settings-m p {
   width: 100%;
   text-align: center;
   font-size: 10px;
-  font-family: FreeSans;
+  font-family: FreeSans,sans-serif;
 }
 
 .profile-settings p:hover {
   cursor: pointer;
 }
-
 
 .profile-settings {
   position: absolute;
@@ -230,11 +236,9 @@ export default {
   border: 1px solid #262727;
 }
 
-
 .responsive-menu:hover {
   cursor: pointer;
 }
-
 
 .popupMenu {
   position: absolute;
@@ -263,7 +267,6 @@ export default {
   color: white;
 }
 
-
 .popupMenu .item {
   display: flex;
   justify-content: center;
@@ -271,7 +274,7 @@ export default {
   background: rgba(0, 0, 0, 0.9);
   width: 100%;
   height: 40px;
-  font-family: FreeSans;
+  font-family: FreeSans,sans-serif;
   font-weight: 600;
   color: #999999;
   font-size: 12px;
@@ -287,7 +290,6 @@ export default {
 .item i {
   color: white;
 }
-
 
 .profile-box i {
   transition: 0.3s;
@@ -306,12 +308,11 @@ export default {
   cursor: pointer;
 }
 
-
 #search input {
   margin-left: -17px;
   width: 160px;
   background: transparent;
-  border: 0px;
+  border: 0;
   outline: 0;
   color: white;
 }
@@ -333,7 +334,6 @@ export default {
   border: 1px solid white;
   transition: 0.3s;
 }
-
 
 @keyframes searchInput {
   from {
@@ -360,7 +360,6 @@ export default {
 }
 
 @media (max-width: 375px) {
-
   .searchMobile {
     display: flex;
   }
@@ -398,7 +397,6 @@ export default {
     margin-left: -160px;
   }
 
-
   @keyframes searchInput {
     from {
       opacity: 0;
@@ -411,11 +409,9 @@ export default {
   }
 }
 
-
 .search {
   transition: 0.3s;
 }
-
 
 .profile-box {
   margin-left: 17px;
@@ -441,7 +437,6 @@ export default {
   width: 89%;
   margin-left: 2px;
 }
-
 
 .header {
   transition: 0.5s;
@@ -501,8 +496,8 @@ export default {
 
 .right p {
   color: white;
-  font-family: 'Circular Std Book';
-  font-size: 13.3px;
+  font-family: 'Circular Std Book',sans-serif;
+  font-size: 13px;
   margin-right: 20px;
   font-weight: 400;
   opacity: 0.9;
@@ -510,19 +505,17 @@ export default {
   text-decoration: none;
 }
 
-
 a {
   margin-bottom: 4px;
   color: white;
-  font-family: 'Circular Std Book';
-  font-size: 13.3px;
+  font-family: 'Circular Std Book',sans-serif;
+  font-size: 13px;
   margin-right: 18px;
   font-weight: 400;
   opacity: 0.9;
   transition: 0.5s;
   text-decoration: none;
 }
-
 
 a:hover {
   cursor: pointer;
@@ -539,18 +532,15 @@ a:hover {
 .navActiveR {
   transition: 0.5s;
   color: #ffffff;
-
 }
 
 .items2 {
-
   display: none;
   justify-content: center;
   align-items: center;
   width: 94%;
   height: 100%;
 }
-
 
 @media (max-width: 895px) {
   .items {
@@ -561,6 +551,4 @@ a:hover {
     display: flex;
   }
 }
-
-
 </style>

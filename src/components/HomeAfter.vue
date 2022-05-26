@@ -23,6 +23,7 @@
 
 <script>
 import headerLoggedOut from './header-logged-out';
+import Helper from '../services/helper';
 
 export default {
   data() {
@@ -37,11 +38,9 @@ export default {
       if (this.email == null) {
         this.errorBox = true;
       } else {
-        const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-        if (this.email.match(validRegex)) {
+        if (Helper.emailIsValid(this.email)) {
           this.$store.state.emailEmail = this.email;
-          this.$router.push('/login');
+          this.login();
         } else {
           this.errorBox = true;
         }
