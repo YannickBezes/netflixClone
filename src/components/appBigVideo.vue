@@ -69,8 +69,6 @@
           <p>{{ database[randomNumber].age }}+</p>
         </div>
       </div>
-
-
     </div>
 
     <div class="top-shadow">
@@ -117,13 +115,11 @@ export default {
     }
   },
   mounted() {
-
     this.videoPlayerControl = this.$store.getters['getBigVideoPlayerControl'];
 
     if (this.$store.state.popup === true) {
       this.$refs['bigVideo'].pause();
     }
-
 
     setTimeout(() => {
       document.querySelector('.description').style.opacity = '0';

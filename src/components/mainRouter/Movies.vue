@@ -1,33 +1,76 @@
 <template>
-
   <div id="ana">
-
     <Preloader v-if="!isLoading"/>
 
-    <app-big-video v-if="isLoading" :selectType="'Film'" :database="database"></app-big-video>
+    <app-big-video v-if="isLoading" selectType="Film" :database="database"></app-big-video>
 
     <div id="slider" v-if="isLoading">
-      <app-slider :database="database" :type="'Film'" :filterData="'category'" :searchValue="'Immersive'"
-                  class="app-slider" @indexSensor="index_sensor($event)"></app-slider>
-      <app-slider :database="database" :type="'Film'" :filterData="'category'" :searchValue="'Emotional'"
-                  class="app-slider" @indexSensor="index_sensor($event)"></app-slider>
-      <app-slider :database="database" :type="'Film'" :filterData="'category'"
-                  :searchValue="'Science Fiction & Fantasy'" class="app-slider"
-                  @indexSensor="index_sensor($event)"></app-slider>
-      <app-slider :database="database" :type="'Film'" :filterData="'category'" :searchValue="'Domestic Movies'"
-                  class="app-slider" @indexSensor="index_sensor($event)"></app-slider>
-      <app-slider :database="database" :type="'Film'" :filterData="'category'" :searchValue="'Action'"
-                  class="app-slider" @indexSensor="index_sensor($event)"></app-slider>
-      <app-slider :database="database" :type="'Film'" :filterData="'category'" :searchValue="'Comedies'"
-                  class="app-slider" @indexSensor="index_sensor($event)"></app-slider>
-      <app-slider :database="database" :type="'Film'" :filterData="'category'" :searchValue="'Action'"
-                  class="app-slider" @indexSensor="index_sensor($event)"></app-slider>
+      <app-slider
+        :database="database"
+        type="Film"
+        filterData="category"
+        searchValue="Immersive"
+        class="app-slider"
+        @indexSensor="index_sensor($event)"
+      ></app-slider>
+
+      <app-slider
+        :database="database"
+        type="Film"
+        filterData="category"
+        searchValue="Emotional"
+        class="app-slider"
+        @indexSensor="index_sensor($event)"
+      ></app-slider>
+
+      <app-slider
+        :database="database"
+        type="Film"
+        filterData="category"
+        searchValue="Science Fiction & Fantasy"
+        class="app-slider"
+        @indexSensor="index_sensor($event)"
+      ></app-slider>
+
+      <app-slider
+        :database="database"
+        type="Film"
+        filterData="category"
+        searchValue="Domestic Movies"
+        class="app-slider"
+        @indexSensor="index_sensor($event)"
+      ></app-slider>
+
+      <app-slider
+        :database="database"
+        type="Film"
+        filterData="category"
+        searchValue="Action"
+        class="app-slider"
+        @indexSensor="index_sensor($event)"
+      ></app-slider>
+
+      <app-slider
+        :database="database"
+        type="Film"
+        filterData="category"
+        searchValue="Comedies"
+        class="app-slider"
+        @indexSensor="index_sensor($event)"
+      ></app-slider>
+
+      <app-slider
+        :database="database"
+        type="Film"
+        filterData="category"
+        searchValue="Action"
+        class="app-slider"
+        @indexSensor="index_sensor($event)"
+      ></app-slider>
     </div>
 
     <app-footer></app-footer>
-
   </div>
-
 </template>
 
 <script>
@@ -69,8 +112,6 @@ export default {
           slider.children[i].style.zIndex = '1';
         }
       }
-
-
     }
   },
   created() {
@@ -83,13 +124,10 @@ export default {
 </script>
 
 <style scoped>
-
-
 #slider {
   width: 100%;
   height: 90vw;
 }
-
 
 .loader {
   position: absolute;
@@ -105,7 +143,6 @@ export default {
   margin-top: -18.5vw;
   z-index: 1;
 }
-
 
 .app-slider:nth-child(2) {
   margin-top: -3.8vw;
@@ -170,13 +207,10 @@ export default {
   }
 }
 
-
 body {
   margin: 0;
   padding: 0;
   background-color: #141414;
   font-family: sans-serif;
 }
-
-
 </style>

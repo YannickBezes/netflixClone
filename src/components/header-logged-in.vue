@@ -180,8 +180,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .email {
   border-bottom: 1px solid #999999;
 }
