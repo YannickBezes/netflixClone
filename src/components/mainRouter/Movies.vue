@@ -92,7 +92,7 @@ export default {
     };
   },
   mounted() {
-    this.database = this.$store.state.firebaseData;
+    this.database = this.$store.state.data;
     if (this.database.length >= 0) {
       setTimeout(() => {
         this.isLoading = true;

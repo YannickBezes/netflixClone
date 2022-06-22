@@ -43,7 +43,7 @@ export default {
           videoDescription: this.database[i].videoDescription,
           director: this.database[i].director,
           cast: this.database[i].cast,
-          scriptwriter: this.database[i].scriptwriter,
+          writer: this.database[i].writer,
           likeButton: this.database[i].likeButton,
           dislikeButton: this.database[i].dislikeButton,
           addedToList: this.database[i].addedToList,
@@ -104,9 +104,5 @@ export default {
 
 .playerClose-top i:hover {
   cursor: pointer;
-
-
 }
-
-
 </style>

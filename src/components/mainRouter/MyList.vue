@@ -37,8 +37,8 @@ export default {
   watch: {
     '$store.state.addedToList'(list) {
       const results = [];
-      const data = this.$store.state.firebaseData;
-      const length = this.$store.state.firebaseData.length;
+      const data = this.$store.state.data;
+      const length = this.$store.state.data.length;
       for (let i = 0; i < length; i++) {
         for (let j = 0; j < list.length; j++) {
           if (data[i].id === list[j]) {
@@ -64,15 +64,15 @@ export default {
   },
 
   created() {
-    this.database = this.$store.state.firebaseData;
+    this.database = this.$store.state.data;
     if (this.$route.fullPath.match('id')) {
       this.$router.push('/browse/list');
     }
 
 
     const results = [];
-    const data = this.$store.state.firebaseData;
-    const length = this.$store.state.firebaseData.length;
+    const data = this.$store.state.data;
+    const length = this.$store.state.data.length;
     const activeList = this.$store.state.addedToList;
     for (let i = 0; i < length; i++) {
       for (let j = 0; j < activeList.length; j++) {

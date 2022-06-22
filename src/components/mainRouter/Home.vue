@@ -55,14 +55,6 @@ export default {
       isLoading: false
     };
   },
-  mounted() {
-    this.database = this.$store.state.firebaseData;
-    if (this.database.length >= 0) {
-      setTimeout(() => {
-        this.isLoading = true;
-      }, 500);
-    }
-  },
   methods: {
     index_sensor(text) {
       const slider = document.querySelector('#slider');
@@ -78,16 +70,23 @@ export default {
     }
   },
   created() {
-    fetch('/data.json').then(response => {
-      const data = response.data;
-      for (let key in data) {
-        this.$store.commit('setFirebaseData', data[key]);
-      }
+    fetch('/data/data.json').then(res => res.json()).then(data => {
+      data.forEach(dataElement => {
+        this.$store.commit('setData', dataElement);
+      });
     });
 
     const path = this.$route.fullPath;
     if (path.match('id')) {
       this.$router.push('/browse');
+    }
+  },
+  mounted() {
+    this.database = this.$store.state.data;
+    if (this.database.length >= 0) {
+      setTimeout(() => {
+        this.isLoading = true;
+      }, 500);
     }
   }
 };

@@ -25,13 +25,6 @@ export default {
     }
   },
   created() {
-    fetch('/data.json').then(response => {
-      const data = response.data;
-      for (let key in data) {
-        this.$store.commit('setFirebaseData', data[key]);
-      }
-    });
-
     const token = localStorage.getItem('token');
 
     if (token) {
@@ -39,15 +32,15 @@ export default {
       this.$store.state.userEmail = localStorage.getItem('userEmail');
       this.$store.state.userLocalID = localStorage.getItem('localId');
 
-      fetch('/userData/' + this.$store.state.userLocalID + '/list.json').then(response => {
-        this.$store.state.addedToList = response.data;
-      });
-      fetch('/userData/' + this.$store.state.userLocalID + '/like.json').then(response => {
-        this.$store.state.likedContents = response.data;
-      });
-      fetch('/userData/' + this.$store.state.userLocalID + '/dislike.json').then(response => {
-        this.$store.state.unlikedContents = response.data;
-      });
+      // fetch('/userData/' + this.$store.state.userLocalID + '/list.json').then(response => {
+      //   this.$store.state.addedToList = response.data;
+      // });
+      // fetch('/userData/' + this.$store.state.userLocalID + '/like.json').then(response => {
+      //   this.$store.state.likedContents = response.data;
+      // });
+      // fetch('/userData/' + this.$store.state.userLocalID + '/dislike.json').then(response => {
+      //   this.$store.state.unlikedContents = response.data;
+      // });
 
       if (this.$route.path === '/login' || this.$route.path === '/') {
         this.$router.push('/browse');

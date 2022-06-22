@@ -71,11 +71,12 @@
 
                   <div id="top-info-squad" class="top-info-right">
                     <div class="cast">
-                      <p><label class="title">Cast:</label> <label class="title-alt" :key="index" v-for="(item,index) in activeData.cast">
+                      <p><label class="title">Cast:</label> <label class="title-alt" :key="index"
+                                                                   v-for="(item,index) in activeData.cast">
                         <router-link
                           @click.native="$store.state.popup = false"
                           tag="a"
-                         :to="{path : '/genre' , query : { p : item}}"
+                          :to="{path : '/genre' , query : { p : item}}"
                         >
                           {{ item }}
                         </router-link>
@@ -91,7 +92,7 @@
                     </div>
                     <div class="this-content">
                       <p><label class="title">This content:</label> <label class="title-alt" :key="index"
-                                                                        v-for="(item,index) in activeData.category">
+                                                                           v-for="(item,index) in activeData.category">
                         <router-link @click.native="$store.state.popup = false" tag="a"
                                      :to="{path : '/genre' , query : { p : item}}">{{ item }}
                         </router-link>
@@ -105,11 +106,9 @@
 
                   <div class="box-frame">
                     <div class="box-analogs" :key="item.id" v-for="item in filter()">
-
-
                       <div class="box-analogs-top-sure"><label>{{ item.time }}</label></div>
                       <div class="box-analogs-top-shadow"><img src="https://i.ibb.co/vmWXfB7/benzerleri-shadow.png"
-                                                                 alt=""></div>
+                                                               alt=""></div>
                       <div class="box-analogs-top-image-hover" @click="boxAnalogsPlay(item.id)">
                         <div class="box-analogs-top-image-hover-button"><i class="bi bi-play-fill"></i></div>
                       </div>
@@ -151,14 +150,12 @@
                                  :to="{path : '/genre' , query : { p : item}}">{{ item }}
                     </router-link>
                     <label v-if="index < castLength">, </label> </label></p>
-                  <p class="other-info">Scriptwriter: <label :key="index"
-                                                                v-for="(item,index) in activeData.scriptwriter">
+                  <p class="other-info">Writer: <label :key="index" v-for="(item,index) in activeData.writer">
                     <router-link @click.native="$store.state.popup = false" tag="a"
                                  :to="{path : '/genre' , query : { p : item}}">{{ item }}
                     </router-link>
-                    <label v-if="index < scriptwriterLength">, </label> </label></p>
-                  <p class="other-info">Genres: <label :key="index"
-                                                          v-for="(item,index) in activeData.subcategories">
+                    <label v-if="index < writerLength">, </label> </label></p>
+                  <p class="other-info">Genres: <label :key="index" v-for="(item,index) in activeData.subcategories">
                     <router-link @click.native="$store.state.popup = false" tag="a"
                                  :to="{path : '/genre' , query : { p : item}}">{{ item }}
                     </router-link>
@@ -202,7 +199,7 @@ export default {
         videoDescription: null,
         director: null,
         cast: null,
-        scriptwriter: null,
+        writer: null,
         likeButton: null,
         dislikeButton: null,
         addedToList: null,
@@ -214,7 +211,7 @@ export default {
       currentTime: null,
       castLength: null,
       directorLength: null,
-      scriptwriterLength: null,
+      writerLength: null,
       subcategoriesLength: null,
       categoryLength: null,
       onOff: false,
@@ -300,28 +297,31 @@ export default {
       document.querySelector('#videoPopup').pause();
     },
     filter() {
-      const contentTitle = this.activeData.title;
-      const category = this.activeData.category;
-      const database = this.$store.state.data;
+      if (this.activeData.id !== null) {
+        const contentTitle = this.activeData.title;
+        const category = this.activeData.category;
+        const database = this.$store.state.data;
 
-      const filteredData = database.filter(value => {
-        for (let i = 0; i < 3; i++) {
-          if (value.category[i] === category[i]) {
-            return value.category[i];
+        const filteredData = database.filter(value => {
+          for (let i = 0; i < 3; i++) {
+            if (value.category[i] === category[i]) {
+              return value.category[i];
+            }
+          }
+        });
+
+        this.length = filteredData.length;
+        this.$emit('rowCount', this.length);
+
+        const data = [];
+        for (let i = 0; i < filteredData.length; i++) {
+          if (filteredData[i].title !== contentTitle) {
+            data.push(filteredData[i]);
           }
         }
-      });
-
-      this.length = filteredData.length;
-      this.$emit('rowCount', this.length);
-
-      const data = [];
-      for (let i = 0; i < filteredData.length; i++) {
-        if (filteredData[i].title !== contentTitle) {
-          data.push(filteredData[i]);
-        }
+        return data;
       }
-      return data;
+      return [];
     },
     addToListById(itemId) {
       const addedToList = this.$store.state.addedToList;
@@ -358,13 +358,13 @@ export default {
   },
   watch: {
     '$route'(route) {
-      const data = this.$store.state.data.filter(item => item.id === this.$route.query.id);
+      const data = this.$store.state.data.filter(item => item.id === parseInt(route.query.id));
 
       this.activeData = data[0];
 
       this.castLength = Object.keys(this.activeData.cast).length - 1;
       this.directorLength = Object.keys(this.activeData.director).length - 1;
-      this.scriptwriterLength = Object.keys(this.activeData.scriptwriter).length - 1;
+      this.writerLength = Object.keys(this.activeData.writer).length - 1;
       this.subcategoriesLength = Object.keys(this.activeData.subcategories).length - 1;
       this.categoryLength = Object.keys(this.activeData.category).length - 1;
 
@@ -752,7 +752,7 @@ export default {
 .age-similar {
   width: 40px;
   text-align: center;
-  font-family: FreeSans,sans-serif;
+  font-family: FreeSans, sans-serif;
   font-weight: 500;
   font-size: 15px;
   background: #2f2f2f;
@@ -882,7 +882,7 @@ export default {
 
 .year-similar {
   font-size: 15px;
-  font-family: FreeSans,sans-serif;
+  font-family: FreeSans, sans-serif;
   font-weight: 400;
 }
 
@@ -943,7 +943,7 @@ export default {
 .about-content .about-text {
   padding-top: 30px;
   margin-left: 40px;
-  font-family: FreeSans,sans-serif;
+  font-family: FreeSans, sans-serif;
   font-size: 23px;
   color: white;
 }
@@ -958,7 +958,7 @@ export default {
 .about-content .other-info label {
   color: white;
   line-height: 20px;
-  font-family: FreeSans,sans-serif;
+  font-family: FreeSans, sans-serif;
   font-weight: 500;
 }
 
@@ -1166,7 +1166,7 @@ export default {
   .age-similar {
     width: 40px;
     text-align: center;
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-weight: 500;
     font-size: 15px;
     background: #2f2f2f;
@@ -1280,7 +1280,7 @@ export default {
 
   .year-similar {
     font-size: 15px;
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-weight: 400;
   }
 
@@ -1341,7 +1341,7 @@ export default {
   .about-content .about-text {
     padding-top: 30px;
     margin-left: 40px;
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-size: 23px;
     color: white;
   }
@@ -1356,7 +1356,7 @@ export default {
   .about-content .other-info label {
     color: white;
     line-height: 20px;
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-weight: 500;
   }
 }
@@ -1599,7 +1599,7 @@ export default {
   .age-similar {
     width: 40px;
     text-align: center;
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-weight: 500;
     font-size: 15px;
     background: #2f2f2f;
@@ -1730,7 +1730,7 @@ export default {
 
   .year-similar {
     font-size: 15px;
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-weight: 400;
   }
 
@@ -1791,7 +1791,7 @@ export default {
   .about-content .about-text {
     padding-top: 30px;
     margin-left: 40px;
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-size: 23px;
     color: white;
   }
@@ -1806,7 +1806,7 @@ export default {
   .about-content .other-info label {
     color: white;
     line-height: 20px;
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-weight: 500;
   }
 }
@@ -1920,7 +1920,7 @@ export default {
   }
 
   .description p {
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-size: 17px;
   }
 }
@@ -1996,7 +1996,7 @@ export default {
   }
 
   .description p {
-    font-family: FreeSans,sans-serif;
+    font-family: FreeSans, sans-serif;
     font-size: 16px;
   }
 }

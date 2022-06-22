@@ -58,7 +58,7 @@ export default {
         item.category.includes(value.toLowerCase()) ||
         item.subcategories.includes(value.toLowerCase()) ||
         item.cast.includes(value.toLowerCase()) ||
-        item.scriptwriter.includes(value.toLowerCase()) ||
+        item.writer.includes(value.toLowerCase()) ||
         item.director.includes(value.toLowerCase())
       );
 
@@ -82,7 +82,7 @@ export default {
   },
   created() {
     this.searchedValue = this.$store.state.searchValue;
-    this.database = this.$store.state.firebaseData;
+    this.database = this.$store.state.data;
   }
 };
 </script>

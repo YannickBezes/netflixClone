@@ -28,7 +28,7 @@ export default {
   },
   created() {
     window.scrollTo(0, 0);
-    this.database = this.$store.state.firebaseData;
+    this.database = this.$store.state.data;
     this.result = this.database.filter(item => item.cast.indexOf(this.$route.query.p) >= 0);
 
     if (this.result.length === 0) {
@@ -40,7 +40,7 @@ export default {
     }
 
     if (this.result.length === 0) {
-      this.result = this.database.filter(item => item.scriptwriter.indexOf(this.$route.query.p) >= 0);
+      this.result = this.database.filter(item => item.writer.indexOf(this.$route.query.p) >= 0);
     }
     const data = this.result;
     this.list = data.reduce((acc, current) => {

@@ -1,11 +1,26 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
+var webpack = require('webpack');
+var CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  plugins: [
+    new CopyPlugin([
+      {
+        from: 'src/assets/',
+        to: 'assets',
+        toType: 'dir'
+      },
+      {
+        from: 'src/data/',
+        to: 'data',
+        toType: 'dir'
+      }
+    ])
+  ],
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: '/',
     filename: 'build.js'
   },
   module: {
